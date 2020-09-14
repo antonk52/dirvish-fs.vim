@@ -3,7 +3,7 @@
 dirvish-fs is a complimentary plugin to [vim-dirvish](https://github.com/justinmk/vim-dirvish). It has two features
 
 - Shortcuts to add/move/copy/remove nodes in dirvish buffers.
-- Shortcuts to just to a current directory and up a directory.
+- Shortcut to jump to the current directory and up a directory.
 
 ## Installation
 
@@ -22,11 +22,11 @@ Plug 'antonk52/dirvish-fs.vim'
 - <kbd>mm</kbd> - mode node
 - <kbd>mc</kbd> - copy node
 - <kbd>dd</kbd> - remove node
-- <kbd>u</kbd> - go up a directory
+- <kbd>-</kbd> - go up a directory
 
 ### In any buffer
 
-- <kbd>-</kbd> - open current directory
+- <kbd>-</kbd> - open current directory from a file buffer
 
 ## Why?
 
