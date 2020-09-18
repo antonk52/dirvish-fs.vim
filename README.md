@@ -19,7 +19,7 @@ Plug 'antonk52/dirvish-fs.vim'
 ### In dirvish buffer
 
 - <kbd>ma</kbd> - add node, end with `/` to add directory
-- <kbd>mm</kbd> - mode node
+- <kbd>mm</kbd> - move node
 - <kbd>mc</kbd> - copy node
 - <kbd>dd</kbd> - remove node
 - <kbd>-</kbd> - go up a directory
