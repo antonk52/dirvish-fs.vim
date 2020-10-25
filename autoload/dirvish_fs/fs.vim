@@ -20,7 +20,7 @@ function! PrepareDestDirectory(path) abort
     let path_sep = '/'
     let list = split(a:path, path_sep)
     " viml cuts off the first slash
-    let dir_path = getcwd() . path_sep . join(list[:-2], path_sep)
+    let dir_path = path_sep . join(list[:-2], path_sep)
 
     if !isdirectory(dir_path)
         execute('silent !' . s:cmd.add_dir . ' ' . dir_path)
