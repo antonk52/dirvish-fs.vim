@@ -3,7 +3,6 @@
 dirvish-fs is a complimentary plugin to [vim-dirvish](https://github.com/justinmk/vim-dirvish). It has two features
 
 - Shortcuts to add/move/copy/remove nodes in dirvish buffers.
-- Shortcut to jump to the current directory and up a directory.
 
 ## Installation
 
@@ -22,11 +21,25 @@ Plug 'antonk52/dirvish-fs.vim'
 - <kbd>mm</kbd> - move node
 - <kbd>mc</kbd> - copy node
 - <kbd>dd</kbd> - remove node
-- <kbd>-</kbd> - go up a directory
 
-### In any buffer
+### Custom mappings
 
-- <kbd>-</kbd> - open current directory from a file buffer
+To disable the default mappings add the following to your `.vimrc`
+
+```viml
+" disables default mappings
+let g:dirvish_fs_default_mappings = 0
+
+" sets custom mappings
+function! DivrishMappings()
+    nmap <buffer> <silent>dd <Plug>DirvishFsRemove
+    nmap <buffer> <silent>ma <Plug>DirvishFsAdd
+    nmap <buffer> <silent>mm <Plug>DirvishFsMove
+    nmap <buffer> <silent>mc <Plug>DirvishFsCopy
+endfunction
+
+autocmd FileType dirvish call DivrishMappings()
+```
 
 ## Why?
 
