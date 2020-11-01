@@ -16,13 +16,14 @@ let s:msg = {
 
 " if the destination is in non existing directory - create it
 function! PrepareDestDirectory(path) abort
+    " TODO: make this windows friendly
     let path_sep = '/'
     let list = split(a:path, path_sep)
     " viml cuts off the first slash
     let dir_path = path_sep . join(list[:-2], path_sep)
 
     if !isdirectory(dir_path)
-        execute('!' . s:cmd.add_dir . ' ' . dir_path)
+        execute('silent !' . s:cmd.add_dir . ' ' . dir_path)
     endif
 
     return 1
@@ -40,7 +41,7 @@ function! dirvish_fs#fs#add() abort
         redraw!
         echo s:msg.exists
     else
-        execute('!' . cmd . ' ' . substitute(new_path, '\/$', '', ''))
+        execute('silent !' . cmd . ' ' . substitute(new_path, '\/$', '', ''))
         redraw!
     endif
 endfunction
@@ -61,7 +62,7 @@ function! dirvish_fs#fs#remove() abort
     endif
 
     if confirmed
-        execute('!' . s:cmd.remove . ' ' . target)
+        execute('silent !' . s:cmd.remove . ' ' . target)
         " redraws the buffer and removes `Press ENTER or type command to continue`
         redraw!
     else
@@ -74,7 +75,7 @@ function! dirvish_fs#fs#move() abort
     let old_path = trim(getline('.'))
     let new_path = input(s:msg.add_node, old_path, 'file')
     call PrepareDestDirectory(new_path)
-    execute('!' . s:cmd.move . ' ' . old_path . ' ' . new_path)
+    execute('silent !' . s:cmd.move . ' ' . old_path . ' ' . new_path)
     redraw!
 endfunction
 
@@ -82,6 +83,6 @@ function! dirvish_fs#fs#copy() abort
     let old_path = trim(getline('.'))
     let new_path = input(s:msg.add_node, old_path, 'file')
     call PrepareDestDirectory(new_path)
-    execute('!' . s:cmd.copy . ' ' . old_path . ' ' . new_path)
+    execute('silent !' . s:cmd.copy . ' ' . old_path . ' ' . new_path)
     redraw!
 endfunction
