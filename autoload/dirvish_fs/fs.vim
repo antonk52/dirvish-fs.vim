@@ -32,8 +32,7 @@ endfunction
 function! dirvish_fs#fs#add() abort
     let current_line = trim(getline('.'))
     let is_on_directory = match(current_line, '\/$', '') != -1
-    let prepared_path = expand('%') . (is_on_directory ? current_line : '')
-    let new_path = input(s:msg.add_node, prepared_path, 'file')
+    let new_path = input(s:msg.add_node, expand('%'), 'file')
     let is_file = match(new_path, '\/$', '') == -1
     let cmd = is_file ? s:cmd.add_file : s:cmd.add_dir
     call PrepareDestDirectory(new_path)
