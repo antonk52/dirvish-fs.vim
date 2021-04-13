@@ -1,8 +1,6 @@
 # dirvish-fs.vim
 
-dirvish-fs is a complimentary plugin to [vim-dirvish](https://github.com/justinmk/vim-dirvish). It has two features
-
-- Shortcuts to add/move/copy/remove nodes in dirvish buffers.
+dirvish-fs is a complimentary plugin to [vim-dirvish](https://github.com/justinmk/vim-dirvish). It adds nerdtree like shortcuts to add/move/copy/remove nodes in dirvish buffers.
 
 ## Installation
 
