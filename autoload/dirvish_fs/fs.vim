@@ -29,10 +29,14 @@ function! PrepareDestDirectory(path) abort
     return 1
 endfunction
 
+function! dirvish_fs#fs#esc(path)
+    return escape(a:path, ' ()')
+endfunction
+
 function! dirvish_fs#fs#add() abort
     let current_line = trim(getline('.'))
     let is_on_directory = match(current_line, '\/$', '') != -1
-    let new_path = input(s:msg.add_node, expand('%'), 'file')
+    let new_path = dirvish_fs#fs#esc(input(s:msg.add_node, expand('%'), 'file'))
     let is_file = match(new_path, '\/$', '') == -1
     let cmd = is_file ? s:cmd.add_file : s:cmd.add_dir
     call PrepareDestDirectory(new_path)
@@ -71,16 +75,16 @@ function! dirvish_fs#fs#remove() abort
 endfunction
 
 function! dirvish_fs#fs#move() abort
-    let old_path = trim(getline('.'))
-    let new_path = input(s:msg.add_node, old_path, 'file')
+    let old_path = dirvish_fs#fs#esc(trim(getline('.')))
+    let new_path = dirvish_fs#fs#esc(input(s:msg.add_node, old_path, 'file'))
     call PrepareDestDirectory(new_path)
     execute('silent !' . s:cmd.move . ' ' . old_path . ' ' . new_path)
     redraw!
 endfunction
 
 function! dirvish_fs#fs#copy() abort
-    let old_path = trim(getline('.'))
-    let new_path = input(s:msg.add_node, old_path, 'file')
+    let old_path = dirvish_fs#fs#esc(trim(getline('.')))
+    let new_path = dirvish_fs#fs#esc(input(s:msg.add_node, old_path, 'file'))
     call PrepareDestDirectory(new_path)
     execute('silent !' . s:cmd.copy . ' ' . old_path . ' ' . new_path)
     redraw!
